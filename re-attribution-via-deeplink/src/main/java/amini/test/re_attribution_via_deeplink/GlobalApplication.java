@@ -1,6 +1,15 @@
 package amini.test.re_attribution_via_deeplink;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import io.adtrace.sdk.AdTrace;
+import io.adtrace.sdk.AdTraceConfig;
+import io.adtrace.sdk.LogLevel;
 
 public class GlobalApplication extends Application {
 
@@ -8,9 +17,48 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        AdTraceConfig adTraceConfig = new AdTraceConfig(this,AdTraceInformation.appToken,AdTraceConfig.ENVIRONMENT_SANDBOX);
+        adTraceConfig.setLogLevel(LogLevel.VERBOSE);
 
+        AdTrace.onCreate(adTraceConfig);
 
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle bundle) {
 
+            }
 
+            @Override
+            public void onActivityStarted(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(@NonNull Activity activity) {
+                AdTrace.onResume();
+            }
+
+            @Override
+            public void onActivityPaused(@NonNull Activity activity) {
+                AdTrace.onPause();
+            }
+
+            @Override
+            public void onActivityStopped(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(@NonNull Activity activity) {
+
+            }
+        });
     }
+
+
 }
