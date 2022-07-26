@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import io.adtrace.sdk.AdTrace;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tv;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleDeeplink(Uri uri) {
         // handling deeplink
+        tv.setText("DeepLink:" + uri.toString());
+        AdTrace.appWillOpenUrl(uri,this);
     }
 
 }
