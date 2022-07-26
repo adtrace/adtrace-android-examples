@@ -1,7 +1,6 @@
 package amini.test.re_attribution_via_deeplink;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
