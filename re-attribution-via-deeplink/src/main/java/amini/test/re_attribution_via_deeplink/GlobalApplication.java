@@ -23,10 +23,24 @@ public class GlobalApplication extends Application {
         adTraceConfig.setLogLevel(LogLevel.VERBOSE);
 
 
+        /*
+        After the AdTrace SDK receives the deep link information from our backend,
+        the SDK will deliver you its content via the listener and expect the boolean
+        return value from you. This return value represents your decision on whether
+        or not the AdTrace SDK should launch the activity to which you have assigned
+        the scheme name from the deeplink (like in the standard deeplinking scenario).
+
+        If you return true, we will launch it, triggering the scenario described in
+        the Standard deep linking scenario chapter. If you do not want the SDK to launch
+        the activity, return false from the listener, and (based on the deep link content)
+        decide on your own what to do next in your app.
+         */
+
+        // see this for more information: https://github.com/adtrace/adtrace_sdk_android#dl-deferred
         adTraceConfig.setOnDeeplinkResponseListener(new OnDeeplinkResponseListener() {
             @Override
             public boolean launchReceivedDeeplink(Uri uri) {
-                return false;
+                return true;
             }
         });
 
