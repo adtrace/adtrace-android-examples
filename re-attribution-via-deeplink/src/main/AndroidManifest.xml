@@ -19,9 +19,28 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "https://www.adtrace.io/example” -->
+                <data android:scheme="https"
+                    android:host="www.adtrace.io"
+                    android:pathPrefix="/example" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "adtrace://example” -->
+                <data android:scheme="adtrace"
+                    android:host="example" />
+            </intent-filter>
+
+
         </activity>
         <receiver
             android:name="io.adtrace.sdk.AdTraceReferrerReceiver"
